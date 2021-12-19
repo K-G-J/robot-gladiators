@@ -40,6 +40,12 @@ var fightOrSkip = function() {
 
 // fight function (with parameter for enemy's name)
 var fight = function(enemy) {
+  // keep track of who goes first 
+  var isPlayerTurn = true; 
+  // randomly change turn order
+  if (Math.random() > 0.5) {
+    isPlayerTurn = false;
+}
 
     // repeat and execute aslong as the enemy-robot is alive 
     while (playerInfo.health > 0 && enemy.health > 0) {
@@ -82,6 +88,8 @@ var fight = function(enemy) {
       } else {
         window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.");
       }
+      // switch turn order for next round 
+      isPlayerTurn = !isPlayerTurn;
     }
   };
 
@@ -176,6 +184,10 @@ while(name === "" || name === null) {
   console.log("Your robot's name is " + name);
   return name;
 };
+/* END GAME FUNCTIONS */
+
+
+/* GAME INFORMATION / VARIABLES */
 
 // player info object
 var playerInfo = {
@@ -225,6 +237,7 @@ var enemyInfo =[
     attack: randomNumber(10, 14)
   }
 ];
+/* END GAME INFORMATION / VARIABLES */
 
-   // start the game when the page loads
-   startGame();
+/* RUN GAME */
+startGame();
